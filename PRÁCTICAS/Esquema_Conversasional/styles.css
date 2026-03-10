@@ -1,0 +1,222 @@
+/* ====== Tema Azul Oscuro + Cian (alto contraste) ====== */
+:root {
+  /* Fondo general (azules muy oscuros) */
+  --bg-0: #0b1220; /* base (casi negro, tinte azul) */
+  --bg-1: #0f1a2b; /* panel / header */
+  --bg-2: #12233a; /* burbuja bot */
+  --bg-3: #0a2540; /* acento oscuro para degradados */
+
+  /* Texto (contraste AAA sobre bg-0/bg-1) */
+  --text-0: #f2f6fb; /* principal */
+  --text-1: #b7c4d6; /* suave */
+
+  /* Acentos (fríos) */
+  --accent:   #00d1ff; /* cian eléctrico principal */
+  --accent-2: #4f9cff; /* azul claro de apoyo */
+  --accent-3: #2dd4bf; /* turquesa (para estados/hover) */
+
+  /* Efectos */
+  --ring:   rgba(0, 209, 255, .30); /* halo cian */
+  --shadow: rgba(0, 7, 20, .40);
+
+  /* Estados */
+  --mic-on: #84ccff; /* luz/estado activo */
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  color: var(--text-0);
+  font: 15px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  /* Gradientes azules (sin morado) */
+  background:
+    radial-gradient(1100px 600px at 85% -10%, #0a2540 0%, rgba(11,18,32,0) 45%),
+    radial-gradient(900px 500px at 10% 0%,  #103054 0%, rgba(11,18,32,0) 50%),
+    linear-gradient(180deg, #0e1a2e 0%, var(--bg-0) 60%);
+}
+
+/* ====== Contenedor App ====== */
+.app {
+  max-width: 760px;
+  margin: 0 auto;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  background: linear-gradient(180deg, rgba(15,26,43,.95), rgba(15,26,43,.7));
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid color-mix(in oklab, var(--accent) 35%, transparent);
+}
+
+.app-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.app-title h1 {
+  font-size: 16px;
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: .2px;
+}
+
+.app-header .status {
+  color: var(--text-1);
+  font-size: 13px;
+}
+
+/* Puntito animado (cian-azul) */
+.dot {
+  inline-size: 10px;
+  block-size: 10px;
+  background: linear-gradient(180deg, var(--accent), #1294ff);
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 var(--ring);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 var(--ring); }
+  70%  { box-shadow: 0 0 0 10px rgba(0,209,255,0); }
+  100% { box-shadow: 0 0 0 0 rgba(0,209,255,0); }
+}
+
+/* ====== Área de chat ====== */
+.chat {
+  padding: 18px 16px 8px;
+  overflow: auto;
+  scroll-behavior: smooth;
+}
+
+/* Mensajes */
+.msg {
+  display: grid;
+  gap: 6px;
+  margin: 8px 0 14px;
+  max-width: 88%;
+}
+
+.msg .bubble {
+  padding: 12px 14px;
+  border-radius: 14px;
+  box-shadow: 0 6px 24px -10px var(--shadow);
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  border: 1px solid rgba(255,255,255,.06);
+}
+
+/* Bot (izquierda): azul profundo con leve degradado */
+.msg.bot { justify-items: start; }
+.msg.bot .bubble {
+  color: #e7edf6;
+  background: linear-gradient(180deg, var(--bg-2), #0e2a4a);
+  border-color: color-mix(in oklab, var(--accent-2) 28%, transparent);
+}
+
+/* Usuario (derecha): acento cian/azul brillante */
+.msg.user { justify-items: end; margin-left: auto; }
+.msg.user .bubble {
+  color: #071421; /* texto oscuro sobre acento claro */
+  background: linear-gradient(180deg, #00d1ff, #1294ff);
+  border-color: rgba(255,255,255,.10);
+  /* toque de relieve interior */
+  box-shadow:
+    0 6px 24px -10px var(--shadow),
+    inset 0 -1px 0 0 color-mix(in oklab, #ffffff 20%, var(--accent-2));
+}
+
+/* Meta (nombre/hora) */
+.msg .meta {
+  font-size: 12px;
+  color: var(--text-1);
+}
+
+/* ====== Composer / Footer ====== */
+.composer {
+  position: sticky;
+  bottom: 0;
+  padding: 12px 16px 18px;
+  background:
+    linear-gradient(180deg, rgba(15,26,43,.12), rgba(11,18,32,.9) 30%, var(--bg-0) 100%);
+  border-top: 1px solid color-mix(in oklab, var(--accent) 35%, transparent);
+  display: grid;
+  gap: 10px;
+}
+
+.hint {
+  color: var(--text-1);
+  font-size: 13px;
+  padding-left: 2px;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Botón micrófono: cian con brillo azul */
+.mic {
+  inline-size: 56px;
+  block-size: 56px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in oklab, var(--accent) 35%, transparent);
+  background:
+    radial-gradient(100% 100% at 70% 0%, #00d1ff 0%, #1294ff 100%);
+  display: grid;
+  place-items: center;
+  color: #06131f; /* texto/ícono oscuro sobre acento claro */
+  cursor: pointer;
+  transition: transform .08s ease, box-shadow .2s ease, filter .2s ease;
+  box-shadow:
+    0 10px 24px -10px var(--ring),
+    inset 0 0 0 1px rgba(255,255,255,.06);
+}
+
+.mic:hover {
+  transform: translateY(-1px);
+  filter: saturate(1.06);
+  box-shadow:
+    0 16px 36px -14px var(--ring),
+    inset 0 0 0 1px rgba(255,255,255,.12);
+}
+
+.mic:active { transform: translateY(0); }
+.mic svg { width: 26px; height: 26px; fill: currentColor; }
+
+.mic.listening {
+  outline: 2px solid var(--mic-on);
+  box-shadow:
+    0 0 0 6px rgba(132,204,255,.15),
+    inset 0 0 0 1px rgba(255,255,255,.15);
+}
+
+/* ====== Scrollbar (cian/azul) ====== */
+.chat::-webkit-scrollbar { width: 10px; }
+.chat::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #1294ff, #00d1ff);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  border-radius: 10px;
+}
+.chat::-webkit-scrollbar-track { background: transparent; }
+
+/* ====== Responsive ====== */
+@media (max-width: 560px) {
+  .app { max-width: 100%; }
+  .msg { max-width: 95%; }
+  .mic { inline-size: 54px; block-size: 54px; }
+}

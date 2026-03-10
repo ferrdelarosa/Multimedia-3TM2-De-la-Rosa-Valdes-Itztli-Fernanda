@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark-blue">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Asistente por Voz</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <div class="app-title">
+        <span class="dot"></span>
+        <h1>De la Rosa Valdés itztli Fernanda
+          & Bazaldua Montoya Jose Juan
+</h1>
+      </div>
+      <div class="status" id="status">Inactivo — di “Escuela”</div>
+    </header>
+
+    <section class="chat" id="chat">
+      <!-- Mensaje inicial -->
+      <div class="msg bot">
+        <div class="bubble">¡Hola! Pulsa el micrófono y di <strong>“Escuela”</strong> para activar.</div>
+        <span class="meta">Sistema</span>
+      </div>
+    </section>
+
+    <footer class="composer">
+      <div class="hint" id="hint">Listo para escuchar…</div>
+      <div class="controls">
+        <button class="mic" id="listen-button" aria-label="Escuchar" title="Escuchar">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v5a3 3 0 0 0 3 3Zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 14 0h-2Zm-5 8a7.002 7.002 0 0 1-6.32-4H8a5 5 0 0 0 8 0h2.32A7.002 7.002 0 0 1 12 19Z"/>
+          </svg>
+        </button>
+      </div>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
